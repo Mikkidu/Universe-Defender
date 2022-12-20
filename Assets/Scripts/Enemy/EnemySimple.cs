@@ -8,7 +8,6 @@ public class EnemySimple : Unit
     [SerializeField] private Transform _playerTr;
 
 
-
     private void Start()
     {
 
@@ -19,8 +18,6 @@ public class EnemySimple : Unit
         Rotate();
         MoveUnit();
     }
-
-
 
     public virtual void Initialize(Transform player)
     {

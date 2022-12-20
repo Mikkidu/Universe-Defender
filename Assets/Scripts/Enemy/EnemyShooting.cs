@@ -12,6 +12,11 @@ public class EnemyShooting : MonoBehaviour
 
     private float _shootTrigger;
 
+    private void Start()
+    {
+        _shootTrigger = Time.realtimeSinceStartup + _reloadTime * 2f;    
+    }
+
     void Update()
     {
         ShootPhase();

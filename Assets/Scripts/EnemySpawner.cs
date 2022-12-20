@@ -4,31 +4,45 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject[] enemies;
-    private float spawnDelay = 2, spawnTrigger;
-    [SerializeField] private Transform player;
+    [SerializeField] private EnemySimple[] _enemies;
+    [SerializeField] private float _spawnDelay = 2f; 
+    [SerializeField] private Transform _playerTr;
     [SerializeField] private GameManager _gameManager;
-    // Start is called before the first frame update
+    [SerializeField] private float _xBound = 8.5f;
+    [SerializeField] private float _yBound = 6.5f;
+
+    private float _spawnTrigger;
+
     void Start()
     {
-        spawnTrigger = Time.realtimeSinceStartup + spawnDelay;
+        _spawnTrigger = Time.realtimeSinceStartup + _spawnDelay;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        if (Time.realtimeSinceStartup > spawnTrigger && !_gameManager.isGameOver)
+        if (Time.realtimeSinceStartup > _spawnTrigger && !_gameManager.isGameOver)
         {
-            int choseEnemy = Random.Range(0, enemies.Length);
-            GameObject enemie = Instantiate(enemies[choseEnemy], RandomSpawnPosition(), Quaternion.identity);
-            //enemie.GetComponent<EnemySimple>(). = player;
-            //enemie.GetComponent<HitThePlayer>().gameObject = gameObject;
-            spawnTrigger = Time.realtimeSinceStartup + spawnDelay;
+            int choseEnemy = Random.Range(0, _enemies.Length);
+            EnemySimple enemie = Instantiate(_enemies[choseEnemy], RandomSpawnPosition(), Quaternion.identity);
+            enemie.Initialize(_playerTr);
+            _spawnTrigger = Time.realtimeSinceStartup + _spawnDelay;
         }
     }
 
     private Vector2 RandomSpawnPosition()
     {
-        return new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * 10;
+        int choseEdge = Random.Range(0, 4);
+        switch (choseEdge)
+        {
+            case 0:
+                return new Vector2(Random.Range(-_xBound, _xBound), _yBound);
+            case 1:
+                return new Vector2(Random.Range(-_xBound, _xBound), -_yBound);
+            case 2:
+                return new Vector2(_xBound , Random.Range(-_yBound, _yBound));
+            default:
+                return new Vector2(-_xBound, Random.Range(-_yBound, _yBound));
+        }
     }
 }

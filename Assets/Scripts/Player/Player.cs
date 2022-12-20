@@ -88,6 +88,6 @@ public class Player : Unit
     {
         ParticleSystem explosion = Instantiate(_explosionPrefab, _rb.position, Quaternion.identity);
         Destroy(explosion.gameObject, 1f);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }
