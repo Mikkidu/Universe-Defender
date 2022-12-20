@@ -7,7 +7,9 @@ public abstract class Unit : MonoBehaviour
 {
     protected Rigidbody2D _rb;
     [SerializeField] protected int _hitPoints;
-    [SerializeField] protected ParticleSystem _explosion;
+    [SerializeField] protected ParticleSystem _explosionPrefab;
+    [SerializeField] protected float _speed;
+
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -18,7 +20,7 @@ public abstract class Unit : MonoBehaviour
     protected abstract void MoveUnit();
 
     protected abstract void Rotate();
-    //protected abstract void ShootPhase();
+    protected abstract void ShootPhase();
     public virtual void Hit(int amount)
     {
         _hitPoints -= amount;
@@ -30,7 +32,7 @@ public abstract class Unit : MonoBehaviour
 
     protected virtual void DestroyUnit()
     {
-        ParticleSystem explosion = Instantiate(_explosion, _rb.position, Quaternion.identity);
+        ParticleSystem explosion = Instantiate(_explosionPrefab, _rb.position, Quaternion.identity);
         Destroy(explosion.gameObject, 2f);
         Destroy(gameObject);
     }
