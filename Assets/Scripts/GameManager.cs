@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
-public class Projectile : MonoBehaviour
+
+public class GameManager : MonoBehaviour
 {
+    public bool isGameOver { get; }
+
     // Start is called before the first frame update
     void Start()
     {

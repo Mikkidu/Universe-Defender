@@ -6,10 +6,14 @@ public class Player : Unit
 {
     [SerializeField] private Transform _crosshair;
     [SerializeField] private Transform _prowTr;
-    [SerializeField] private Projectile _projectilePrefab;
-    [SerializeField] private float _shootDelay;
+    [SerializeField] private PlayerProjectile _projectilePrefab;
+    [SerializeField] private float _reloadTime;
     [SerializeField] private float _yBounds = 5.5f;
     [SerializeField] private float _xBounds = 10f;
+    [SerializeField] protected int _hitPoints;
+    [SerializeField] protected ParticleSystem _explosionPrefab;
+    [SerializeField] private float _projectileSpeed;
+    [SerializeField] private int _projectileDamage;
 
     private float _shootTrigger;
     private Camera cam;
@@ -50,22 +54,40 @@ public class Player : Unit
     {
         if (Input.GetMouseButton(0) && _shootTrigger < Time.realtimeSinceStartup)
         {
-            Projectile bullet = Instantiate(_projectilePrefab, _prowTr.position, transform.rotation);
+            PlayerProjectile bullet = Instantiate(_projectilePrefab, _prowTr.position, transform.rotation);
+            bullet.Initialize(_projectileDamage);
+            bullet.GetComponent<Rigidbody2D>().velocity = transform.up * _projectileSpeed;
             Destroy(bullet.gameObject, 2f);
-            _shootTrigger = Time.realtimeSinceStartup + _shootDelay;
+            _shootTrigger = Time.realtimeSinceStartup + _reloadTime;
         }
     }
 
     void CheckBounds()
     {
-        if (_rb.position.x > _xBounds)
+        if (_rb.position.x > _xBounds && _rb.velocity.x > 0)
             _rb.velocity = new Vector2(0, _rb.velocity.y);
-        else if (_rb.position.x < -_xBounds)
+        else if (_rb.position.x < -_xBounds && _rb.velocity.x < 0)
             _rb.velocity = new Vector2(0, _rb.velocity.y);
 
-        if (_rb.position.y > _yBounds)
+        if (_rb.position.y > _yBounds && _rb.velocity.y > 0)
             _rb.velocity = new Vector2(_rb.velocity.x, 0);
-        else if (_rb.position.y < -_yBounds)
+        else if (_rb.position.y < -_yBounds && _rb.velocity.y < 0)
             _rb.velocity = new Vector2(_rb.velocity.x, 0);
+    }
+
+    public virtual void Hit(int amount)
+    {
+        _hitPoints -= amount;
+        if (_hitPoints <= 0)
+        {
+            DestroyUnit();
+        }
+    }
+
+    protected virtual void DestroyUnit()
+    {
+        ParticleSystem explosion = Instantiate(_explosionPrefab, _rb.position, Quaternion.identity);
+        Destroy(explosion.gameObject, 1f);
+        Destroy(gameObject);
     }
 }

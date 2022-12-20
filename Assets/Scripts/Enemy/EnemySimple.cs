@@ -6,7 +6,7 @@ public class EnemySimple : Unit
 {
     
     [SerializeField] private Transform _playerTr;
-    [SerializeField] private int _damageAmount;
+
 
 
     private void Start()
@@ -43,16 +43,7 @@ public class EnemySimple : Unit
 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.TryGetComponent<Player>(out Player player))
-        {
-            player.Hit(_damageAmount);
-            player.GetComponent<Rigidbody2D>().AddForce(_rb.velocity, ForceMode2D.Impulse);
-            ParticleSystem explosion = Instantiate(_explosionPrefab, _rb.position, Quaternion.identity);
-            Hit(_hitPoints);
-        }
-    }
+
 
 
 
