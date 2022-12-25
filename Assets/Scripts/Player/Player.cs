@@ -16,8 +16,10 @@ public class Player : Unit
     [SerializeField] private float _projectileSpeed;
     [SerializeField] private int _projectileDamage;
     [SerializeField] private Slider _healthBar;
-    
+    [SerializeField] private AudioClip _shootSound;
+    [SerializeField] private AudioClip _explosionSound;
 
+    private AudioSource _audioSource;
     private float _shootTrigger;
     private Camera cam;
 
@@ -25,6 +27,7 @@ public class Player : Unit
     {
         cam = Camera.main;
         _healthBar.value = _healthBar.maxValue = _hitPoints;
+        _audioSource = GetComponent<AudioSource>();
     }
     private void FixedUpdate()
     {
@@ -68,6 +71,7 @@ public class Player : Unit
             bullet.Initialize(_projectileDamage);
             bullet.GetComponent<Rigidbody2D>().velocity = transform.up * _projectileSpeed;
             Destroy(bullet.gameObject, 2f);
+            _audioSource.PlayOneShot(_shootSound);
             _shootTrigger = Time.realtimeSinceStartup + _reloadTime;
         }
     }
@@ -100,6 +104,7 @@ public class Player : Unit
         ParticleSystem explosion = Instantiate(_explosionPrefab, _rb.position, Quaternion.identity);
         Destroy(explosion.gameObject, 1f);
         GetComponent<SpriteRenderer>().color = new Color(0.35f, 0.35f, 0.35f, 1f);
+        _audioSource.PlayOneShot(_explosionSound);
         GameManager.Instance.GameOver();
     }
 }

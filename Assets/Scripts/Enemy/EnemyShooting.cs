@@ -33,6 +33,7 @@ public class EnemyShooting : MonoBehaviour
             bullet.Initialize(_projectileDamage);
             bullet.GetComponent<Rigidbody2D>().velocity = transform.up * _projectileSpeed;
             Destroy(bullet.gameObject, 2f);
+            FXSounds.Instance.EnemyShoot();
             _shootTrigger = Time.realtimeSinceStartup + _reloadTime;
         }
     }

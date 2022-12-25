@@ -23,6 +23,7 @@ public class EnemyHp : MonoBehaviour
         ParticleSystem explosion = Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
         Destroy(explosion.gameObject, 1f);
         GameManager.Instance.AddScore(_scorePoints);
+        FXSounds.Instance.EnemyExplosion();
         Destroy(gameObject);
     }
 

@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _scoreText;
     public static GameManager Instance { get; private set; }
     private int _score;
+    
+
 
     private void Awake()
     {
@@ -45,10 +47,12 @@ public class GameManager : MonoBehaviour
     {
         isGameOver = true;
         Time.timeScale = 0;
+        Cursor.visible = true;
     }
 
     public void AddScore(int value)
     {
+        
         _score += value;
         _scoreText.SetText($"Score: {_score}");
     }
