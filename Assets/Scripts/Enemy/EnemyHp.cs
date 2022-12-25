@@ -7,17 +7,7 @@ public class EnemyHp : MonoBehaviour
     [SerializeField] protected int _hitPoints;
     [SerializeField] protected ParticleSystem _explosionPrefab;
     [SerializeField] private int _damageAmount;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] private int _scorePoints;
 
     public virtual void Hit(int amount)
     {
@@ -32,6 +22,7 @@ public class EnemyHp : MonoBehaviour
     {
         ParticleSystem explosion = Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
         Destroy(explosion.gameObject, 1f);
+        GameManager.Instance.AddScore(_scorePoints);
         Destroy(gameObject);
     }
 

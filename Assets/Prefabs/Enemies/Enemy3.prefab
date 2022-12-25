@@ -143,6 +143,7 @@ MonoBehaviour:
   _hitPoints: 60
   _explosionPrefab: {fileID: 294000927279135750, guid: cc296c595c3a8c940a224ca70be099d7, type: 3}
   _damageAmount: 20
+  _scorePoints: 3
 --- !u!60 &5709948539384470346
 PolygonCollider2D:
   m_ObjectHideFlags: 0

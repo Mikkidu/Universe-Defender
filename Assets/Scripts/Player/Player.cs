@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : Unit
 {
@@ -14,6 +15,8 @@ public class Player : Unit
     [SerializeField] protected ParticleSystem _explosionPrefab;
     [SerializeField] private float _projectileSpeed;
     [SerializeField] private int _projectileDamage;
+    [SerializeField] private Slider _healthBar;
+    
 
     private float _shootTrigger;
     private Camera cam;
@@ -21,15 +24,22 @@ public class Player : Unit
     private void Start()
     {
         cam = Camera.main;
+        _healthBar.value = _healthBar.maxValue = _hitPoints;
     }
     private void FixedUpdate()
     {
-        Rotate();
-        MoveUnit();
+        if (!GameManager.Instance.isGameOver)
+        {
+            Rotate();
+            MoveUnit();
+        }
     }
     private void Update()
     {
-        ShootPhase();
+        if (!GameManager.Instance.isGameOver)
+        {
+            ShootPhase();
+        }    
     }
 
     protected override void MoveUnit()
@@ -50,7 +60,7 @@ public class Player : Unit
         
     }
 
-    protected override void ShootPhase()
+    private void ShootPhase()
     {
         if (Input.GetMouseButton(0) && _shootTrigger < Time.realtimeSinceStartup)
         {
@@ -78,6 +88,7 @@ public class Player : Unit
     public virtual void Hit(int amount)
     {
         _hitPoints -= amount;
+        _healthBar.value = _hitPoints;
         if (_hitPoints <= 0)
         {
             DestroyUnit();
@@ -88,6 +99,7 @@ public class Player : Unit
     {
         ParticleSystem explosion = Instantiate(_explosionPrefab, _rb.position, Quaternion.identity);
         Destroy(explosion.gameObject, 1f);
-        gameObject.SetActive(false);
+        GetComponent<SpriteRenderer>().color = new Color(0.35f, 0.35f, 0.35f, 1f);
+        GameManager.Instance.GameOver();
     }
 }

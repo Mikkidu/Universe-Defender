@@ -19,7 +19,10 @@ public class EnemyShooting : MonoBehaviour
 
     void Update()
     {
-        ShootPhase();
+        if (!GameManager.Instance.isGameOver)
+        {
+            ShootPhase();
+        }
     }
 
     private void ShootPhase()

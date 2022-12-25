@@ -124,6 +124,7 @@ MonoBehaviour:
   _hitPoints: 40
   _explosionPrefab: {fileID: 294000927279135750, guid: cc296c595c3a8c940a224ca70be099d7, type: 3}
   _damageAmount: 10
+  _scorePoints: 1
 --- !u!114 &7894483744326900091
 MonoBehaviour:
   m_ObjectHideFlags: 0

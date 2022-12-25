@@ -21,15 +21,23 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
-        if (Time.realtimeSinceStartup > _spawnTrigger && !_gameManager.isGameOver)
+        if (!GameManager.Instance.isGameOver)
         {
+            SpawnEnemy();
+        }
+    }
+
+    private void SpawnEnemy()
+    {
+        if (Time.realtimeSinceStartup > _spawnTrigger)
+        {
+
             int choseEnemy = Random.Range(0, _enemies.Length);
             EnemySimple enemie = Instantiate(_enemies[choseEnemy], RandomSpawnPosition(), Quaternion.identity);
             enemie.Initialize(_playerTr);
             _spawnTrigger = Time.realtimeSinceStartup + _spawnDelay;
         }
     }
-
     private Vector2 RandomSpawnPosition()
     {
         int choseEdge = Random.Range(0, 4);

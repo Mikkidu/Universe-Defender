@@ -18,6 +18,5 @@ public abstract class Unit : MonoBehaviour
     protected abstract void MoveUnit();
 
     protected abstract void Rotate();
-    protected abstract void ShootPhase();
     
 }

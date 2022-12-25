@@ -15,8 +15,11 @@ public class EnemySimple : Unit
 
     private void FixedUpdate()
     {
-        Rotate();
-        MoveUnit();
+        if (!GameManager.Instance.isGameOver)
+        {
+            Rotate();
+            MoveUnit();
+        }
     }
 
     public virtual void Initialize(Transform player)
@@ -34,14 +37,4 @@ public class EnemySimple : Unit
         Vector2 toPlayer = (Vector2)_playerTr.position - _rb.position;
         _rb.rotation = Vector2.SignedAngle(Vector2.up, toPlayer);
     }
-
-    protected override void ShootPhase()
-    {
-
-    }
-
-
-
-
-
 }
