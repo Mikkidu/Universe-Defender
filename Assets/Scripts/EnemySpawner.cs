@@ -32,7 +32,7 @@ public class EnemySpawner : MonoBehaviour
         if (Time.realtimeSinceStartup > _spawnTrigger)
         {
 
-            int choseEnemy = Random.Range(0, _enemies.Length);
+            int choseEnemy = Random.Range(0, GameManager.Instance.enemyTypes);
             EnemySimple enemie = Instantiate(_enemies[choseEnemy], RandomSpawnPosition(), Quaternion.identity);
             enemie.Initialize(_playerTr);
             _spawnTrigger = Time.realtimeSinceStartup + _spawnDelay;
@@ -52,5 +52,10 @@ public class EnemySpawner : MonoBehaviour
             default:
                 return new Vector2(-_xBound, Random.Range(-_yBound, _yBound));
         }
+    }
+
+    public void IncreaseSpawnRate()
+    {
+        _spawnDelay *= 0.99f;
     }
 }
