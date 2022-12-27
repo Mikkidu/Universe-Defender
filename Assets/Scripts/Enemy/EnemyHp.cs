@@ -7,7 +7,7 @@ public class EnemyHp : MonoBehaviour
     [SerializeField] private int _damageAmount;
     [SerializeField] private int _scorePoints;
 
-    public virtual void Hit(int amount)
+    public virtual void Hit(int amount) // ABSTRACTION
     {
         _hitPoints -= amount;
         if (_hitPoints <= 0)
@@ -16,7 +16,7 @@ public class EnemyHp : MonoBehaviour
         }
     }
 
-    protected virtual void DestroyUnit()
+    protected virtual void DestroyUnit() // ABSTRACTION
     {
         ParticleSystem explosion = Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
         Destroy(explosion.gameObject, 1f);

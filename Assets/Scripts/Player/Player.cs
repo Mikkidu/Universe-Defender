@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Player : Unit
+public class Player : Unit // INHERITANCE
 {
     [SerializeField] private Transform _crosshair;
     [SerializeField] private Transform _prowTr;
@@ -42,7 +42,7 @@ public class Player : Unit
             ShootPhase();
         }    
     }
-
+    // POLYMORPHISM
     protected override void MoveUnit()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -50,7 +50,7 @@ public class Player : Unit
         _rb.AddForce(new Vector2(horizontalInput, verticalInput) * _speed, ForceMode2D.Force);
         CheckBounds();
     }
-
+    // POLYMORPHISM
     protected override void Rotate()
     {
         Vector2 mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
@@ -61,7 +61,7 @@ public class Player : Unit
         
     }
 
-    private void ShootPhase()
+    private void ShootPhase() // ABSTRACTION
     {
         if (Input.GetMouseButton(0) && _shootTrigger < Time.realtimeSinceStartup)
         {
@@ -87,7 +87,7 @@ public class Player : Unit
             _rb.velocity = new Vector2(_rb.velocity.x, 0);
     }
 
-    public virtual void Hit(int amount)
+    public virtual void Hit(int amount) // ABSTRACTION
     {
         _hitPoints -= amount;
         _healthBar.value = _hitPoints;
@@ -97,7 +97,7 @@ public class Player : Unit
         }
     }
 
-    protected virtual void DestroyUnit()
+    protected virtual void DestroyUnit() // ABSTRACTION
     {
         ParticleSystem explosion = Instantiate(_explosionPrefab, _rb.position, Quaternion.identity);
         Destroy(explosion.gameObject, 1f);

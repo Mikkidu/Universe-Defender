@@ -13,8 +13,8 @@ public abstract class Unit : MonoBehaviour
 
 
 
-    protected abstract void MoveUnit();
+    protected abstract void MoveUnit(); // ABSTRACTION
 
-    protected abstract void Rotate();
-    
+    protected abstract void Rotate(); // ABSTRACTION
+
 }

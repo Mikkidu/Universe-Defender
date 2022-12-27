@@ -7,14 +7,7 @@ using UnityEditor;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _scoreText;
-    [SerializeField] private EnemySpawner _enemySpawner;
-    [SerializeField] private GameObject _gameOverText;
-    public static GameManager Instance { get; private set; }
-    private int _score;
-    public int enemyTypes { get; private set; }
-
-
+    public static GameManager Instance { get; private set; } // ENCAPSULATION
     private void Awake()
     {
         if (Instance != null)
@@ -25,9 +18,14 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
-    public bool isGameOver { get; private set; }
-
-
+    
+    [SerializeField] private TextMeshProUGUI _scoreText;
+    [SerializeField] private EnemySpawner _enemySpawner;
+    [SerializeField] private GameObject _gameOverText;
+    
+    private int _score;
+    public int enemyTypes { get; private set; } // ENCAPSULATION
+    public bool isGameOver { get; private set; } // ENCAPSULATION
 
     void Start()
     {

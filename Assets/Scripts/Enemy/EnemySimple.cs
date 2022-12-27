@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class EnemySimple : Unit
+
+public class EnemySimple : Unit // INHERITANCE
 {
     
     [SerializeField] private Transform _playerTr;
@@ -18,11 +19,13 @@ public class EnemySimple : Unit
         _playerTr = player;
     }
 
+    // POLYMORPHISM
     protected override void MoveUnit()
     {
         _rb.velocity = transform.up * _speed; 
     }
 
+    // POLYMORPHISM
     protected override void Rotate()
     {
         Vector2 toPlayer = (Vector2)_playerTr.position - _rb.position;
