@@ -1,18 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySimple : Unit
 {
     
     [SerializeField] private Transform _playerTr;
-
-
-    private void Start()
-    {
-
-    }
-
     private void FixedUpdate()
     {
         if (!GameManager.Instance.isGameOver)

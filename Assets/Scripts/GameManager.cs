@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
@@ -38,12 +36,6 @@ public class GameManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
         _gameOverText.SetActive(false);
-    }
-
- 
-    void Update()
-    {
-        
     }
 
     public void GameOver()
