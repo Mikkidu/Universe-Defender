@@ -434,7 +434,7 @@ MonoBehaviour:
   _enemies:
   - {fileID: 7894483744326900091, guid: 4004706decaa7864ebfb2c9e23a628e2, type: 3}
   - {fileID: 2441094338454748539, guid: 792ff60521a230246af4fe6375e2ddc8, type: 3}
-  - {fileID: 1675194552936901003, guid: 75073e723ae763f49ac040338908dba9, type: 3}
+  - {fileID: 7894483744326900091, guid: 4004706decaa7864ebfb2c9e23a628e2, type: 3}
   _spawnDelay: 2
   _playerTr: {fileID: 1323074139}
   _gameManager: {fileID: 168149573}
@@ -464,7 +464,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 296608187}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Prow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1298,7 +1298,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -1}
+  m_AnchoredPosition: {x: 10, y: -5}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &810642360
@@ -1799,7 +1799,7 @@ GameObject:
   - component: {fileID: 1323074136}
   - component: {fileID: 1323074140}
   - component: {fileID: 1323074141}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1953,14 +1953,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 10
+  _hitPoints: 100
+  _explosionPrefab: {fileID: 294000927279135750, guid: cc296c595c3a8c940a224ca70be099d7, type: 3}
   _crosshair: {fileID: 1401313057}
   _prowTr: {fileID: 296608187}
   _projectilePrefab: {fileID: 1271215795095112955, guid: fcc9e65d116cbb5468e694ef5715f0a3, type: 3}
   _reloadTime: 0.15
   _yBounds: 4.5
   _xBounds: 7.5
-  _hitPoints: 100
-  _explosionPrefab: {fileID: 294000927279135750, guid: cc296c595c3a8c940a224ca70be099d7, type: 3}
   _projectileSpeed: 10
   _projectileDamage: 10
   _healthBar: {fileID: 810642360}

@@ -12,10 +12,8 @@ GameObject:
   - component: {fileID: 5709948539384470348}
   - component: {fileID: 5709948539384470347}
   - component: {fileID: 587326778201020569}
-  - component: {fileID: 5709948539384470350}
   - component: {fileID: 5709948539384470346}
-  - component: {fileID: 1675194552936901003}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,27 +121,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80abb09f6482e5946867099c4bcea2e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _speed: 1.5
+  _hitPoints: 60
+  _explosionPrefab: {fileID: 294000927279135750, guid: cc296c595c3a8c940a224ca70be099d7, type: 3}
+  _playerTr: {fileID: 0}
+  _scorePoints: 3
+  _damageAmount: 20
   _projectilePrefab: {fileID: 7047166738898514695, guid: 3a0c10830c3e92b4fbf528256e52673e, type: 3}
   _prowTr: {fileID: 7049458458805854459}
   _reloadTime: 2
   _projectileSpeed: 5
   _projectileDamage: 10
---- !u!114 &5709948539384470350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5709948539384470345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ef9ee63dcb925942a025d05a54e4ba5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hitPoints: 60
-  _explosionPrefab: {fileID: 294000927279135750, guid: cc296c595c3a8c940a224ca70be099d7, type: 3}
-  _damageAmount: 20
-  _scorePoints: 3
 --- !u!60 &5709948539384470346
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -188,20 +176,6 @@ PolygonCollider2D:
       - {x: -0.27818203, y: 0.7639098}
       - {x: -0.25005668, y: 0.6313865}
       - {x: 0.0022391677, y: 0.6902232}
---- !u!114 &1675194552936901003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5709948539384470345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fab7c5b91e6d6d4a892d6c24f025089, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 1
-  _playerTr: {fileID: 0}
 --- !u!1 &7652256500989170726
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,7 +185,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7049458458805854459}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Prow
   m_TagString: Untagged
   m_Icon: {fileID: 0}

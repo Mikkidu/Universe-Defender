@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 7894483744326900068}
   - component: {fileID: 7894483744326900069}
   - component: {fileID: 7894483744326900070}
-  - component: {fileID: 7894483744326900090}
   - component: {fileID: 7894483744326900091}
   - component: {fileID: 7894483744326900071}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,22 +108,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7894483744326900090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7894483744326900064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ef9ee63dcb925942a025d05a54e4ba5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hitPoints: 40
-  _explosionPrefab: {fileID: 294000927279135750, guid: cc296c595c3a8c940a224ca70be099d7, type: 3}
-  _damageAmount: 10
-  _scorePoints: 1
 --- !u!114 &7894483744326900091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,7 +121,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 2
+  _hitPoints: 40
+  _explosionPrefab: {fileID: 294000927279135750, guid: cc296c595c3a8c940a224ca70be099d7, type: 3}
   _playerTr: {fileID: 0}
+  _scorePoints: 1
+  _damageAmount: 10
 --- !u!60 &7894483744326900071
 PolygonCollider2D:
   m_ObjectHideFlags: 0

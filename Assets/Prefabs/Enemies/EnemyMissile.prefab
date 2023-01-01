@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3037690741825448042}
   - component: {fileID: 3037690741825448041}
   - component: {fileID: 3037690741825448053}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EnemyMissile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,6 +124,7 @@ MonoBehaviour:
   _hitPoints: 1
   _explosionPrefab: {fileID: 294000927279135750, guid: cc296c595c3a8c940a224ca70be099d7, type: 3}
   _damageAmount: 7
+  _scorePoints: 0
 --- !u!114 &3037690741825448041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,7 +138,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 3.5
+  _hitPoints: 0
+  _explosionPrefab: {fileID: 0}
   _playerTr: {fileID: 0}
+  _scorePoints: 0
+  _damageAmount: 0
 --- !u!70 &3037690741825448053
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -12,12 +12,18 @@ public class PlayerProjectile : MonoBehaviour
     public virtual void Initialize(int damage)
     {
         _damageAmount = damage;
+
+    }
+    private void Start()
+    {
+
+        Destroy(gameObject, 2f);
     }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent<EnemyHp>(out EnemyHp target))
+        if (collision.gameObject.TryGetComponent<Unit>(out Unit target))
         {
             target.Hit(_damageAmount);
             DetonateExplosion(target.gameObject);
@@ -29,9 +35,7 @@ public class PlayerProjectile : MonoBehaviour
         target.GetComponent<Rigidbody2D>().AddForce(
                 GetComponent<Rigidbody2D>().velocity.normalized * _damageAmount,
                 ForceMode2D.Force);
-        Destroy(
-            Instantiate(_explosionPrefab, transform.position, Quaternion.identity),
-            1f);
+        Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 

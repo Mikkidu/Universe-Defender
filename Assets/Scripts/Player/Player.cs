@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Player : Unit // INHERITANCE
+public class Player : Unit 
 {
     [SerializeField] private Transform _crosshair;
     [SerializeField] private Transform _prowTr;
@@ -9,8 +9,6 @@ public class Player : Unit // INHERITANCE
     [SerializeField] private float _reloadTime;
     [SerializeField] private float _yBounds = 5.5f;
     [SerializeField] private float _xBounds = 10f;
-    [SerializeField] protected int _hitPoints;
-    [SerializeField] protected ParticleSystem _explosionPrefab;
     [SerializeField] private float _projectileSpeed;
     [SerializeField] private int _projectileDamage;
     [SerializeField] private Slider _healthBar;
@@ -27,14 +25,7 @@ public class Player : Unit // INHERITANCE
         _healthBar.value = _healthBar.maxValue = _hitPoints;
         _audioSource = GetComponent<AudioSource>();
     }
-    private void FixedUpdate()
-    {
-        if (!GameManager.Instance.isGameOver)
-        {
-            Rotate();
-            MoveUnit();
-        }
-    }
+
     private void Update()
     {
         if (!GameManager.Instance.isGameOver)
@@ -42,7 +33,7 @@ public class Player : Unit // INHERITANCE
             ShootPhase();
         }    
     }
-    // POLYMORPHISM
+
     protected override void MoveUnit()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -50,18 +41,17 @@ public class Player : Unit // INHERITANCE
         _rb.AddForce(new Vector2(horizontalInput, verticalInput) * _speed, ForceMode2D.Force);
         CheckBounds();
     }
-    // POLYMORPHISM
+
     protected override void Rotate()
     {
         Vector2 mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
         _crosshair.position = mousePosition;
-        //vector from player to mouse
         mousePosition -= _rb.position;
         _rb.rotation = Vector2.SignedAngle(Vector2.up, mousePosition);
         
     }
 
-    private void ShootPhase() // ABSTRACTION
+    private void ShootPhase() 
     {
         if (Input.GetMouseButton(0) && _shootTrigger < Time.realtimeSinceStartup)
         {
@@ -87,22 +77,18 @@ public class Player : Unit // INHERITANCE
             _rb.velocity = new Vector2(_rb.velocity.x, 0);
     }
 
-    public virtual void Hit(int amount) // ABSTRACTION
+    public override void Hit(int amount) 
     {
-        _hitPoints -= amount;
+        base.Hit(amount);
         _healthBar.value = _hitPoints;
-        if (_hitPoints <= 0)
-        {
-            DestroyUnit();
-        }
     }
 
-    protected virtual void DestroyUnit() // ABSTRACTION
+    protected override void DestroyUnit() 
     {
-        ParticleSystem explosion = Instantiate(_explosionPrefab, _rb.position, Quaternion.identity);
-        Destroy(explosion.gameObject, 1f);
-        GetComponent<SpriteRenderer>().color = new Color(0.35f, 0.35f, 0.35f, 1f);
+        base.DestroyUnit();
         _audioSource.PlayOneShot(_explosionSound);
+        GetComponent<SpriteRenderer>().color = new Color(0.35f, 0.35f, 0.35f, 1f);
         GameManager.Instance.GameOver();
     }
+
 }

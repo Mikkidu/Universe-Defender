@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyShooting : MonoBehaviour
+public class EnemyShooting : EnemySimple
 {
     [SerializeField] private EnemyProjectile _projectilePrefab;
     [SerializeField] private Transform _prowTr;
