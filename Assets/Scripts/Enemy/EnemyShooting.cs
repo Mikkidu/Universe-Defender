@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyShooting : EnemySimple
 {
-    [SerializeField] private EnemyProjectile _projectilePrefab;
+    [SerializeField] private PlayerProjectile _projectilePrefab;
     [SerializeField] private Transform _prowTr;
     [SerializeField] private float _reloadTime;
     [SerializeField] private float _projectileSpeed;
@@ -27,10 +27,10 @@ public class EnemyShooting : EnemySimple
     {
         if (Time.realtimeSinceStartup > _shootTrigger)
         {
-            EnemyProjectile bullet = Instantiate(_projectilePrefab, _prowTr.position, transform.rotation);
+            PlayerProjectile bullet = Instantiate(_projectilePrefab, _prowTr.position, transform.rotation);
             bullet.Initialize(_projectileDamage);
             bullet.GetComponent<Rigidbody2D>().velocity = transform.up * _projectileSpeed;
-            Destroy(bullet.gameObject, 2f);
+            bullet.gameObject.layer = 6;
             FXSounds.Instance.EnemyShoot();
             _shootTrigger = Time.realtimeSinceStartup + _reloadTime;
         }

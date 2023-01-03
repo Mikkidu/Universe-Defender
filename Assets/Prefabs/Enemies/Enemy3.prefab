@@ -127,7 +127,7 @@ MonoBehaviour:
   _playerTr: {fileID: 0}
   _scorePoints: 3
   _damageAmount: 20
-  _projectilePrefab: {fileID: 7047166738898514695, guid: 3a0c10830c3e92b4fbf528256e52673e, type: 3}
+  _projectilePrefab: {fileID: 1271215795095112955, guid: fcc9e65d116cbb5468e694ef5715f0a3, type: 3}
   _prowTr: {fileID: 7049458458805854459}
   _reloadTime: 2
   _projectileSpeed: 5

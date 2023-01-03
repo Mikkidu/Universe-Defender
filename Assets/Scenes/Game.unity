@@ -434,7 +434,7 @@ MonoBehaviour:
   _enemies:
   - {fileID: 7894483744326900091, guid: 4004706decaa7864ebfb2c9e23a628e2, type: 3}
   - {fileID: 2441094338454748539, guid: 792ff60521a230246af4fe6375e2ddc8, type: 3}
-  - {fileID: 7894483744326900091, guid: 4004706decaa7864ebfb2c9e23a628e2, type: 3}
+  - {fileID: 587326778201020569, guid: 75073e723ae763f49ac040338908dba9, type: 3}
   _spawnDelay: 2
   _playerTr: {fileID: 1323074139}
   _gameManager: {fileID: 168149573}
