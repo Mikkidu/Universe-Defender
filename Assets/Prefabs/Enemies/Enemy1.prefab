@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 2
-  _hitPoints: 40
+  _hitPoints: 1
   _explosionPrefab: {fileID: 294000927279135750, guid: cc296c595c3a8c940a224ca70be099d7, type: 3}
   _playerTr: {fileID: 0}
   _scorePoints: 40
