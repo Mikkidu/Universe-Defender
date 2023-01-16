@@ -19,6 +19,7 @@ public class DataManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        LoadCash();
     }
 
     private CacheData _cache;
@@ -33,17 +34,6 @@ public class DataManager : MonoBehaviour
 
     }
 
-    private void Start()
-    {
-
-    }
-    public void SaveCash()
-    {
-        
-        string json = JsonUtility.ToJson(cache);
-        Debug.Log($"save \n{json}");
-        File.WriteAllText(Application.persistentDataPath + "/lastPlayer.json", json);
-    }
 
     public void InputName(string newPlayerName)
     {
@@ -53,6 +43,13 @@ public class DataManager : MonoBehaviour
         }
     }
 
+    public void SaveCash()
+    {
+        
+        string json = JsonUtility.ToJson(cache);
+        Debug.Log($"save \n{json}");
+        File.WriteAllText(Application.persistentDataPath + "/lastPlayer.json", json);
+    }
 
 
     public CacheData LoadCash()

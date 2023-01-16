@@ -14,23 +14,29 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private TMP_InputField _inputName;
     [SerializeField] private Slider _musicBar;
     [SerializeField] private Slider _effectBar;
+    [SerializeField] private AudioManager _audioManager;
 
     
     void Start()
     {
         _inputName.text = DataManager.Instance.cache.playerName;
-        _musicBar.value = DataManager.Instance.cache.musicVolume;
-        _effectBar.value = DataManager.Instance.cache.effectVolume;
+        _musicBar.value = Mathf.Pow(10, DataManager.Instance.cache.musicVolume / 40);
+        _effectBar.value = Mathf.Pow(10, DataManager.Instance.cache.effectVolume / 40);
+        
     }
 
     public void ChangeMusicVolume()
     {
-        DataManager.Instance.cache.musicVolume = _musicBar.value;
+        DataManager.Instance.cache.musicVolume = Mathf.Log10(_musicBar.value) * 40;
+        Debug.Log($"MusicBar{_musicBar.value}");
+        _audioManager.SetMusicVolume();
     }
 
     public void ChangeEffectsVolume()
     {
-        DataManager.Instance.cache.effectVolume = _effectBar.value;
+        DataManager.Instance.cache.effectVolume = Mathf.Log10(_effectBar.value) * 40;
+        Debug.Log($"MusicBar{_effectBar.value}");
+        _audioManager.SetEffectsVolume();
     }
 
 

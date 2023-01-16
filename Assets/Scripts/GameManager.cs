@@ -61,10 +61,8 @@ public class GameManager : MonoBehaviour
 
     public void QuitGame()
     {
-#if UNITY_EDITOR
-        EditorApplication.ExitPlaymode();
-#else
-        Application.Quit();
-#endif
+        DataManager.Instance.SaveCash();
+        Cursor.visible = true;
+        SceneManager.LoadScene("StartScreen");
     }
 }
