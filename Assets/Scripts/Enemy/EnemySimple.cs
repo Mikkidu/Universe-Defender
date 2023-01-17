@@ -32,7 +32,7 @@ public class EnemySimple : Unit
     {
         base.DestroyUnit();
         FXSounds.Instance.EnemyExplosion();
-        GameManager.Instance.AddScore(_scorePoints);
+        _gManager.AddScore(_scorePoints);
         Destroy(gameObject);
     }
 

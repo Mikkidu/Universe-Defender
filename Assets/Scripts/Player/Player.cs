@@ -19,8 +19,9 @@ public class Player : Unit
     private float _shootTrigger;
     private Camera cam;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         cam = Camera.main;
         _healthBar.value = _healthBar.maxValue = _hitPoints;
         _audioSource = GetComponent<AudioSource>();
@@ -28,7 +29,7 @@ public class Player : Unit
 
     private void Update()
     {
-        if (!GameManager.Instance.isGameOver)
+        if (!_gManager.isGameOver && !_gManager.isGamePaused)
         {
             ShootPhase();
         }    

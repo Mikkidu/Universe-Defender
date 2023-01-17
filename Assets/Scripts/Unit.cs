@@ -3,20 +3,25 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
 public abstract class Unit : MonoBehaviour
 {
-    protected Rigidbody2D _rb;
+    
     [SerializeField] protected float _speed;
     [SerializeField] protected int _hitPoints;
     [SerializeField] protected ParticleSystem _explosionPrefab;
-
+    protected Rigidbody2D _rb;
+    protected GameManager _gManager;
 
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
     }
+    protected virtual void Start()
+    {
+        _gManager = GameManager.Instance;
+    }
 
     protected virtual void FixedUpdate()
     {
-        if (!GameManager.Instance.isGameOver)
+        if (!_gManager.isGameOver && !_gManager.isGamePaused)
         {
             Rotate();
             MoveUnit();

@@ -6,7 +6,6 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private EnemySimple[] _enemies;
     [SerializeField] private float _spawnDelay = 2f; 
     [SerializeField] private Transform _playerTr;
-    [SerializeField] private GameManager _gameManager;
     [SerializeField] private float _xBound = 8.5f;
     [SerializeField] private float _yBound = 6.5f;
 

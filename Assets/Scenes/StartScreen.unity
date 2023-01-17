@@ -253,6 +253,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioMixer: {fileID: 24100000, guid: 6fb0dd59938c31d42a28fdb96d1c3e8f, type: 2}
+  _musicBar: {fileID: 1138900681}
+  _effectBar: {fileID: 886283965}
 --- !u!1 &207440004
 GameObject:
   m_ObjectHideFlags: 0
@@ -1661,8 +1663,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1119893698}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+      - m_Target: {fileID: 101186732}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: ChangeEffectsVolume
         m_Mode: 1
         m_Arguments:
@@ -2740,8 +2742,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputName: {fileID: 1049603512}
-  _musicBar: {fileID: 1138900681}
-  _effectBar: {fileID: 886283965}
   _audioManager: {fileID: 101186732}
 --- !u!95 &1119893699
 Animator:
@@ -3008,8 +3008,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1119893698}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+      - m_Target: {fileID: 101186732}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: ChangeMusicVolume
         m_Mode: 1
         m_Arguments:

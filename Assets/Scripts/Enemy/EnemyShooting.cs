@@ -10,14 +10,15 @@ public class EnemyShooting : EnemySimple
 
     private float _shootTrigger;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         _shootTrigger = Time.realtimeSinceStartup + _reloadTime * 2f;    
     }
 
     void Update()
     {
-        if (!GameManager.Instance.isGameOver)
+        if (!_gManager.isGameOver && !_gManager.isGamePaused)
         {
             ShootPhase();
         }

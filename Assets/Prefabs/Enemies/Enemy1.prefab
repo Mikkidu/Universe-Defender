@@ -124,7 +124,7 @@ MonoBehaviour:
   _hitPoints: 1
   _explosionPrefab: {fileID: 294000927279135750, guid: cc296c595c3a8c940a224ca70be099d7, type: 3}
   _playerTr: {fileID: 0}
-  _scorePoints: 40
+  _scorePoints: 20
   _damageAmount: 10
 --- !u!60 &7894483744326900071
 PolygonCollider2D:
