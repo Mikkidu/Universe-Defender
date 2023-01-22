@@ -122,9 +122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 1.5
-  _hitPoints: 60
+  _hitPoints: 20
   _explosionPrefab: {fileID: 294000927279135750, guid: cc296c595c3a8c940a224ca70be099d7, type: 3}
-  _playerTr: {fileID: 0}
   _scorePoints: 3
   _damageAmount: 20
   _projectilePrefab: {fileID: 1271215795095112955, guid: fcc9e65d116cbb5468e694ef5715f0a3, type: 3}

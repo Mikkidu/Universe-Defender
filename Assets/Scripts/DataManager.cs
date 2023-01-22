@@ -23,6 +23,7 @@ public class DataManager : MonoBehaviour
     }
 
     private CacheData _cache;
+
     public CacheData cache
     {
         set { _cache = value; }
@@ -34,6 +35,11 @@ public class DataManager : MonoBehaviour
 
     }
 
+    public void SetHiScore(int score)
+    {
+        cache.championName = cache.playerName;
+        cache.hiScore = score;
+    }
 
     public void InputName(string newPlayerName)
     {
@@ -69,10 +75,19 @@ public class DataManager : MonoBehaviour
 
     [Serializable] public class CacheData
     {
-        public string playerName = "Nobody...";
-        public float musicVolume = 0.5f;
-        public float effectVolume = 0.5f;
+        public string playerName;
+        public float musicVolume;
+        public float effectVolume;
+        public string championName;
+        public int hiScore;
+        public CacheData()
+        {
+            playerName = "Nobody...";
+            musicVolume = 0.5f;
+            effectVolume = 0.5f;
+            championName = playerName;
+            hiScore = 0;
+        }
     }
 
-    
 }

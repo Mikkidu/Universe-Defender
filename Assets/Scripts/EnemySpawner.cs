@@ -1,8 +1,9 @@
-
+using System.Collections;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [SerializeField] private GameUI _gameUI;
     [SerializeField] private EnemySimple[] _enemies;
     [SerializeField] private float _spawnDelay = 2f; 
     [SerializeField] private Transform _playerTr;
@@ -10,32 +11,32 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float _yBound = 6.5f;
 
     private float _spawnTrigger;
+    private GameManager _gManager;
+    private float _difficultRate = 1;
 
     void Start()
     {
-        _spawnTrigger = Time.realtimeSinceStartup + _spawnDelay;
+        _gManager = GameManager.Instance;
+        StartCoroutine(SpawnEnemies());
     }
 
-
-    void Update()
+    private IEnumerator SpawnEnemies()
     {
-        if (!GameManager.Instance.isGameOver)
+        while (true)
         {
             SpawnEnemy();
+            if (_gManager.isGamePaused) yield return null;
+            yield return new WaitForSeconds(_spawnDelay);
         }
     }
 
     private void SpawnEnemy()
     {
-        if (Time.realtimeSinceStartup > _spawnTrigger)
-        {
-
-            int choseEnemy = Random.Range(0, GameManager.Instance.enemyTypes);
-            EnemySimple enemie = Instantiate(_enemies[choseEnemy], RandomSpawnPosition(), Quaternion.identity);
-            enemie.Initialize(_playerTr);
-            _spawnTrigger = Time.realtimeSinceStartup + _spawnDelay;
-        }
+        int choseEnemy = Random.Range(0, _gManager.enemyTypes);
+        EnemySimple enemie = Instantiate(_enemies[choseEnemy], RandomSpawnPosition(), Quaternion.identity);
+        enemie.Initialize(_playerTr, _gameUI, _difficultRate);
     }
+
     private Vector2 RandomSpawnPosition()
     {
         int choseEdge = Random.Range(0, 4);
@@ -55,5 +56,7 @@ public class EnemySpawner : MonoBehaviour
     public void IncreaseSpawnRate()
     {
         _spawnDelay *= 0.99f;
+        _difficultRate *= 1.05f;
+
     }
 }

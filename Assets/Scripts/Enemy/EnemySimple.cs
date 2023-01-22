@@ -4,16 +4,26 @@ using UnityEngine;
 public class EnemySimple : Unit 
 {
     
-    [SerializeField] protected Transform _playerTr;
+    
     [SerializeField] protected int _scorePoints;
     [SerializeField] private int _damageAmount;
     private Vector3 _vel = Vector3.zero;
+    protected GameUI _gameUI;
+    protected Transform _playerTr;
+    protected float _difficultRate;
 
-
-    public virtual void Initialize(Transform player)
+    public virtual void Initialize(Transform player, GameUI ui, float difficult)
     {
         _playerTr = player;
+        _gameUI = ui;
+        _difficultRate = difficult;
+    }
 
+    protected override void Start()
+    {
+        base.Start();
+        _hitPoints = (int)(_hitPoints * _difficultRate);
+        _damageAmount = (int)(_damageAmount * _difficultRate);
     }
 
     protected override void MoveUnit()
@@ -32,7 +42,7 @@ public class EnemySimple : Unit
     {
         base.DestroyUnit();
         FXSounds.Instance.EnemyExplosion();
-        _gManager.AddScore(_scorePoints);
+        _gameUI.UpdateScore(_scorePoints);
         Destroy(gameObject);
     }
 

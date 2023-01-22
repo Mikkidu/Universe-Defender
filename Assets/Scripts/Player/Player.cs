@@ -6,24 +6,25 @@ public class Player : Unit
     [SerializeField] private Transform _crosshair;
     [SerializeField] private Transform _prowTr;
     [SerializeField] private PlayerProjectile _projectilePrefab;
-    [SerializeField] private float _reloadTime;
-    [SerializeField] private float _yBounds = 5.5f;
-    [SerializeField] private float _xBounds = 10f;
-    [SerializeField] private float _projectileSpeed;
-    [SerializeField] private int _projectileDamage;
-    [SerializeField] private Slider _healthBar;
+
     [SerializeField] private AudioClip _shootSound;
     [SerializeField] private AudioClip _explosionSound;
+    [SerializeField] private GameUI _gameUI;
 
     private AudioSource _audioSource;
     private float _shootTrigger;
     private Camera cam;
+    private float _yBounds = 5.5f;
+    private float _xBounds = 10f;
+    private float _reloadTime = 0.5f;
+    private float _projectileSpeed = 10f;
+    private int _projectileDamage = 10;
 
     protected override void Start()
     {
         base.Start();
         cam = Camera.main;
-        _healthBar.value = _healthBar.maxValue = _hitPoints;
+        _gameUI.SetHealthBar( _hitPoints);
         _audioSource = GetComponent<AudioSource>();
     }
 
@@ -81,7 +82,7 @@ public class Player : Unit
     public override void Hit(int amount) 
     {
         base.Hit(amount);
-        _healthBar.value = _hitPoints;
+        _gameUI.UpdateHealthBar(_hitPoints);
     }
 
     protected override void DestroyUnit() 
@@ -89,7 +90,7 @@ public class Player : Unit
         base.DestroyUnit();
         _audioSource.PlayOneShot(_explosionSound);
         GetComponent<SpriteRenderer>().color = new Color(0.35f, 0.35f, 0.35f, 1f);
-        GameManager.Instance.GameOver();
+        _gameUI.GameOver();
     }
 
 }

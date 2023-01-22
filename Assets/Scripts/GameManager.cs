@@ -1,5 +1,4 @@
 using UnityEngine;
-using TMPro;
 using UnityEngine.SceneManagement;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -19,40 +18,31 @@ public class GameManager : MonoBehaviour
     }
 
     
-    [SerializeField] private TextMeshProUGUI _scoreText;
     [SerializeField] private EnemySpawner _enemySpawner;
-    [SerializeField] private GameObject _gameOverText;
-    [SerializeField] private GameObject _pauseMenu;
 
-    private int _score;
-    public int enemyTypes       { get; private set; } 
+
+
+    private DataManager _dManager;
+    public int score            { get; private set; }
+    public int enemyTypes       { get; private set; }
     public bool isGameOver      { get; private set; }
     public bool isGamePaused    { get; private set; }
 
     void Start()
     {
+        _dManager = DataManager.Instance;
         isGamePaused = false;
-        _score = 0;
-        _gameOverText.SetActive(false);
+        score = 0;
+ 
         Time.timeScale = 1;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape) && !isGameOver)
-        {
-            Pause();
-        }
     }
 
     public void Pause()
     {
         isGamePaused = !isGamePaused;
         Time.timeScale = isGamePaused ? 0 : 1;
-        _pauseMenu.SetActive(isGamePaused);
-        Cursor.visible = isGamePaused;
     }
 
     public void GameOver()
@@ -60,17 +50,24 @@ public class GameManager : MonoBehaviour
         isGameOver = true;
         Time.timeScale = 0;
         Cursor.visible = true;
-        _gameOverText.SetActive(true);
+        UpdateHiScore();
+
     }
 
     public void AddScore(int value)
     {
-        
-        _score += value;
+        score += value;
         _enemySpawner.IncreaseSpawnRate();
-        if (_score > 40) enemyTypes = 3;
-        else if (_score > 10) enemyTypes = 2;
-        _scoreText.SetText($"Score: {_score}");
+        if (score > 40) enemyTypes = 3;
+        else if (score > 10) enemyTypes = 2;
+    }
+
+    private void UpdateHiScore()
+    {
+        if (score > _dManager.cache.hiScore)
+        {
+            _dManager.SetHiScore(score);
+        }
     }
 
     public void RestartGame()
@@ -80,7 +77,7 @@ public class GameManager : MonoBehaviour
 
     public void QuitGame()
     {
-        DataManager.Instance.SaveCash();
+        _dManager.SaveCash();
         Cursor.visible = true;
         SceneManager.LoadScene("StartScreen");
         Time.timeScale = 1;
